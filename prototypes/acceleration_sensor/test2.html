@@ -1,0 +1,63 @@
+hack! sakaguchi rev.2 rel.02
+<div id="ex_motion"></div>
+
+
+<script>
+/*
+  Device Acceleration Sensor is get time interval case by case.
+  Reference get time interval : iPhone5(25 millisecond).   
+*/
+/*
+  デバイスにより加速度センサーの取得時間が異なります。
+  iPhone5ではおおよそ25ミリ秒です。
+*/
+
+window.addEventListener("devicemotion", motion, true);
+
+//Low-pass Filter setting clear value.
+//ローパスフィルタの値を初期化
+var low_x = parseFloat(0);
+var low_y = parseFloat(0);
+var low_z = parseFloat(0);
+
+//Popular filtering value.
+//一般的なフィルタリングの値。
+var FILTERING_VALUE = parseFloat(0.1);
+
+function motion(event){
+
+    //HTML5 API Getting Acceleration Sensor Value.
+    //HTML5 APIから加速度センサーの値を取ってくる。
+    var x = parseFloat(event.accelerationIncludingGravity.x);
+    var y = parseFloat(event.accelerationIncludingGravity.y);
+    var z = parseFloat(event.accelerationIncludingGravity.z);
+
+    //Low-Pass Filter
+    //ローパスフィルター
+    low_x = eval(x * FILTERING_VALUE + low_x * (1.0 - FILTERING_VALUE));
+    low_y = eval(y * FILTERING_VALUE + low_y * (1.0 - FILTERING_VALUE));
+    low_z = eval(z * FILTERING_VALUE + low_z * (1.0 - FILTERING_VALUE));
+
+    //High-Pass Filter
+    //ハイパスフィルター
+    var high_x = eval(x - low_x);
+    var high_y = eval(y - low_y);
+    var high_z = eval(z - low_z);
+
+    // document.getElementById('ex_motion').innerHTML = 
+	// 	"<b>y軸の加速度</b><br />" + high_x + "<br /><br />"
+ 	// 	+ "<b>y軸の加速度</b><br />" + high_y + "<br /><br />"
+ 	// 	+ "<b>z軸の加速度</b><br />" + high_z + "<br /><br />";
+ 
+    //Your Action start IF method.
+	//あなたが設定した加速度に加わる値をif分で分ける
+    //if(high_y <= 3 && high_x > 1.8 && high_z <= 3){
+ 	var acctotal = eval((high_y + high_x + high_z));
+    if( acctotal >= 3){
+        //Do You Action Method (Event).
+        // あなたが行いたいイベントを記述
+	    document.getElementById('ex_motion').innerHTML = 
+		"<b>加速度</b><br />" + acctotal + "<br /><br />";
+    }
+}
+</script>

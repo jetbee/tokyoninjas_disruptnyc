@@ -1,0 +1,21 @@
+hack! sakaguchi rev.3 rel.01
+<div id="ex_motion"></div>
+
+
+<script>
+window.addEventListener('devicemotion', function(e){
+	e.interval = 1000
+	var output = "<b>acceleration.x（x軸の加速度）</b><br />" + e.acceleration.x + "<br /><br />"
+	+ "<b>acceleration.y（y軸の加速度）</b><br />" + e.acceleration.y + "<br /><br />"
+	+ "<b>acceleration.z（z軸の加速度）</b><br />" + e.acceleration.z + "<br /><br />"
+	+ "<b>accelerationIncludingGravity.x（x軸の加速度）左右の傾きは水平0</b><br />" + e.accelerationIncludingGravity.x + "<br /><br />"
+	+ "<b>accelerationIncludingGravity.y（y軸の加速度）前後の傾きは水平0</b><br />" + e.accelerationIncludingGravity.y + "<br /><br />"
+	+ "<b>accelerationIncludingGravity.z（z軸の加速度）前後の傾きは垂直0</b><br />" + e.accelerationIncludingGravity.z + "<br /><br />"
+	+ "<b>rotationRate.alpha（z軸回転）</b><br />" + e.rotationRate.alpha + "<br /><br />"
+	+ "<b>rotationRate.beta（x軸回転）</b><br />" + e.rotationRate.beta + "<br /><br />"
+	+ "<b>rotationRate.gamma（y軸回転）</b><br />" + e.rotationRate.gamma + "<br /><br />"
+	+ "<b>interval（デバイスからデータを取得する間隔・ミリ秒or秒）</b><br />" + e.interval;
+	
+	document.getElementById('ex_motion').innerHTML = output;
+}, false);
+</script>
