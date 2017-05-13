@@ -9,3 +9,7 @@ MainApp.config(function($routeProvider){
 	  .otherwise({redirectTo:'/'});
 });
 
+MainApp.controller('mainsCtrl', function($http, $scope){
+  // 
+});
+
