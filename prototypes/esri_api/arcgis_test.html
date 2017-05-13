@@ -40,9 +40,6 @@
     });
     map.on("load", createToolbar);
 
-    if ( .declaredClass === "dijit.form.Button" ) {
-      d.on("click", activateTool);
-    }
     function activateTool() {
           var tool = this.label.toUpperCase().replace(/ /g, "_");
           toolbar.activate(Draw[tool]);
