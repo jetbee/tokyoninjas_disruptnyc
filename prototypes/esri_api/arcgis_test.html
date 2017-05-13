@@ -6,11 +6,10 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
     <title>arcGIS Test</title>
     <!-- esri API Stylesheet -->
-    <link rel="stylesheet" href="https://js.arcgis.com/3.20/dijit/themes/nihilo/nihilo.css">
     <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
     <!-- esri API CDN -->
     <style>
-      html, body, #mainWindow {
+      html, body, #mainWindow, #map {
         font-family: sans-serif;
         height: 100%;
         width: 100%;
@@ -30,11 +29,11 @@
 
   </head>
   <body>
-  <div id="mainWindow" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline'">
-    <div id="header" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'">
+  <div id="mainWindow">
+    <div id="header">
       <button id="polyline" data-dojo-type="dijit/form/Button">Polyline</button>
     </div>
-    <div id="map" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'"></div>
+    <div id="map"></div>
   </div>
     <script>
       var map, toolbar, symbol, geomTask;
@@ -55,7 +54,7 @@
 
         map = new Map("map", {
           basemap: "streets",
-          center: [-60, -73.984824],
+          center: [60, -73.984824],
           zoom: 10
         });
 
@@ -69,8 +68,7 @@
         }
 
         function activateTool() {
-          var tool = this.label.toUpperCase().replace(/ /g, "_");
-          toolbar.activate(Draw[tool]);
+          toolbar.activate("polyline");
           map.hideZoomSlider();
         }
 
