@@ -1,8 +1,18 @@
-hack! sakaguchi rev.2 rel.02
-<div id="ex_motion"></div>
+<html>
+<x>
 
+hack! sakaguchi rev.2 rel.04
+<div>
+加速度の閾値 : <input type="number" name="accThreshold" id="accThreshold" value="4">
+</div>
+<div id="ex_motion"></div>
+<button onclick="playSound()">PLAY</button>
 
 <script>
+
+var soundMaterial = new Audio('http://ec2-54-89-197-176.compute-1.amazonaws.com/seamoon/sounds/344500__jeremysykes__jump05.wav');
+soundMaterial.load();
+
 /*
   Device Acceleration Sensor is get time interval case by case.
   Reference get time interval : iPhone5(25 millisecond).   
@@ -52,12 +62,20 @@ function motion(event){
     //Your Action start IF method.
 	//あなたが設定した加速度に加わる値をif分で分ける
     //if(high_y <= 3 && high_x > 1.8 && high_z <= 3){
- 	var acctotal = eval((high_y + high_x + high_z));
-    if( acctotal >= 3){
+    var accThreshold =  eval(document.getElementById('accThreshold').value );
+ 	var accTotal = eval((high_y + high_x + high_z));
+   	if( accTotal >= accThreshold){
         //Do You Action Method (Event).
-        // あなたが行いたいイベントを記述
 	    document.getElementById('ex_motion').innerHTML = 
-		"<b>加速度</b><br />" + acctotal + "<br /><br />";
+		"<b>加速度</b><br />" + accTotal + "<br /><br />"
+		+ "<b>ジャンプ判定の閾値</b><br />" + accThreshold + "<br /><br />";
+		playSound();
+
+		//removeEventListener("devicemotion", motion, true);
     }
+}
+
+function playSound(){
+	soundMaterial.play();
 }
 </script>
