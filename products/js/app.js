@@ -77,6 +77,21 @@ require([
     prepare_to_run_btn.set("disabled", true);
     prepare_to_run_btn.on("click", toReadyToRun);
 
+    // back to set course btn
+    back_to_set_course_btn = registry.byId("back_to_set_course_btn");
+    back_to_set_course_btn.on("click", backToSetCourse);
+
+    // run button
+    pause_btn = registry.byId("run_btn");
+    pause_btn.on("click", toRunning();
+
+    // pause button
+    pause_btn = registry.byId("pause_btn");
+    pause_btn.on("click", backToReadyToRun);
+
+    // goal button
+    goal_btn = registry.byId("pause_btn");
+    goal_btn.on("click", toGoal);
 
 	function activateTool() {
         set_cource_btn.set("disabled", true);
@@ -104,11 +119,9 @@ require([
 
     function toReadyToRun(){
         // map move
-        /*
         contentview_map = dom.byId("contentview_map");
         contentview_mappoint = dom.byId("contentview_readytorun_mappoint");
         domConstruct.place(contentview_map, contentview_mappoint, "after");
-        */
         // to readyToRun
         dijit.byId("view_setcourse")
         .performTransition("view_readytorun", 1, "slide", null);
@@ -117,7 +130,7 @@ require([
     function backToSetCourse(){
         // map move
         contentview_map = dom.byId("contentview_map");
-        contentview_mappoint = dom.byId("contentview_setcourse_mappoint");
+        contentview_mappoint = dom.byId("contentview_setcource_mappoint");
         domConstruct.place(contentview_map, contentview_mappoint, "after");
         // to readyToRun
         dijit.byId("view_readytorun")

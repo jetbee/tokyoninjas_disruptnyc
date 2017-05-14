@@ -49,14 +49,13 @@
 		<!-- //HEAD -->
 
 		<!-- CONTENT -->
-		<div id="contentview_setcourse" data-dojo-type="dojox/mobile/View" style="height:100%">
+		<div id="contentview_setcourse" data-dojo-type="dojox/mobile/View">
 		<div id="contentview_setcource_start">
 			<button id="contentview_setcource_start_btn" data-dojo-type="dojox/mobile/Button">SET COURCE</button>
 		</div>
-		<div id="contentview_setcource_mappoint">
-		</div>
-		<div id="contentview_map">
-		</div>
+		<div id="contentview_setcource_mappoint"></div>
+		<div id="contentview_map"></div>
+        </div>
 		<!-- //CONTENT -->
 
 		<!-- FOOT -->
@@ -72,7 +71,9 @@
 	<!-- VIEW READY TO RUN -->
 	<div id="view_readytorun" data-dojo-type="dojox/mobile/View">
 		<!-- HEAD -->
-		<h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'BACK', moveTo:'view_setcourse'">NOW READY TO RUN!</h1>
+        <div data-dojo-type="dojox/mobile/Heading" data-dojo-props="lavbel:'READY TO RUN!'">
+            <span data-dojo-type="dojox/mobile/ToolBarButton" id="back_to_set_course_btn">BACK</span>
+        </div>
 		<!-- //HEAD -->
 
 		<!-- INFO AREA -->
@@ -84,10 +85,7 @@
 		<!-- //INFO AREA -->
 
 		<!-- CONTENT -->
-        <div id="contentview_readytorun">
-		</div>
-		<div id="contentview_readytorun_mappoint">
-		</div>
+		<div id="contentview_readytorun_mappoint"></div>
 		<!-- //CONTENT -->
 
 		<!-- FOOTER -->
@@ -106,10 +104,10 @@
 	<!-- VIEW RUNNING -->
 	<div id="view_running" data-dojo-type="dojox/mobile/View">
 		<!-- HEAD -->
-        <div data-dojo-type="dojox/mobile/Heading" data-dojo-props="lavel:'NOW RUNNING!'">
+        <h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="lavel:'NOW RUNNING!'">
           <span data-dojo-type="dojox/mobile/ToolBarButton"
                       data-dojo-props='label:"BACK"'></span>
-        </div>
+        </h1>
 		<!-- //HEAD -->
 
 		<!-- CONTENT -->
