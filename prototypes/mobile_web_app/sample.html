@@ -6,8 +6,11 @@
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
 	<title>Go Go Coin!</title>
 	<!-- application stylesheet will go here -->
+	<link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
 	<!-- dynamically apply native visual theme according to the browser user agent -->
 	<script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojox/mobile/deviceTheme.js"></script>
+	<link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojox/mobile/themes/android/android.css"></link>
+
 	<!-- dojo configuration options -->
 	<script>
 		dojoConfig = {
@@ -16,7 +19,8 @@
 		};
 	</script>
 	<!-- dojo bootstrap -->
-	<script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
+  	<script src="https://js.arcgis.com/3.20/"></script>
+	<!-- script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script -->
 	<!-- dojo application code -->
 	<script>
 		require([
@@ -24,11 +28,13 @@
 			"dojox/mobile/compat",
 			"dojo/domReady!",
 			"dojox/mobile/View",
+			"dojox/mobile/ScrollableView",
 			"dojox/mobile/Heading",
 			"dojox/mobile/RoundRectList",
 			"dojox/mobile/ListItem",
 			"dojox/mobile/Switch",
-			"dojox/mobile/RoundRectCategory"
+			"dojox/mobile/RoundRectCategory",
+			"dojox/mobile/TabBar"
 		], function (parser) {
 			// now parse the page for widgets
 			parser.parse();
@@ -38,36 +44,47 @@
 
 <body style="visibility:hidden;">
 	<!-- the view or "page"; select it as the "home" screen -->
-	<div id="settings" data-dojo-type="dojox/mobile/View" data-dojo-props="selected:true">
+	<div id="view_home" data-dojo-type="dojox/mobile/View" data-dojo-props="selected:true">
 		<!-- a sample heading -->
-		<h1 data-dojo-type="dojox/mobile/Heading">"Homepage" View</h1>
+		<h1 data-dojo-type="dojox/mobile/Heading">Go Go Coin!</h1>
 		<!-- a rounded rectangle list container -->
 		<ul data-dojo-type="dojox/mobile/RoundRectList">
-			<!-- list item with an icon containing a switch -->
-			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-1.png'">Airplane Mode
-				<!-- the switch -->
-				<div data-dojo-type="dojox/mobile/Switch"></div>
-			</li>
-			<!-- list item with an icon that slides this view away and then loads another page -->
-			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-2.png', rightText:'mac'">Wi-Fi</li>
-			<!-- list item with an icon that slides to a view called "general" -->
-			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-3.png', rightText:'AcmePhone', moveTo:'general'">Carrier</li>
+			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-3.png', moveTo:'view_setcourse'">SET COURSE</li>
 		</ul>
+
 	</div>
+
 	<!-- The "General" sub-page -->
-	<div id="general" data-dojo-type="dojox/mobile/View">
+	<div id="view_setcourse" data-dojo-type="dojox/mobile/View">
 		<!-- a sample heading -->
-		<h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'Settings', moveTo:'settings'">General View</h1>
+		<h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'BACK', moveTo:'view_home'">SET COURSE</h1>
+
+<div id="inbox_view" data-dojo-type="dojox/mobile/ScrollableView">
 		<!-- a rounded rectangle list container -->
 		<ul data-dojo-type="dojox/mobile/RoundRectList">
 			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="moveTo:'about'">About</li>
 			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'2h 40m', moveTo:'about'">Usage</li>
 		</ul>
+</div>
+
+
+<ul data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
+  <li data-dojo-type="dojox/mobile/TabBarButton"
+      data-dojo-props='icon1:"images/tab-icon-15.png",
+                       icon2:"images/tab-icon-15h.png",
+                       moveTo:"view2"'>UNDO</li>
+  <li data-dojo-type="dojox/mobile/TabBarButton"
+      data-dojo-props='icon1:"images/tab-icon-10.png",
+                       icon2:"images/tab-icon-10h.png",
+                       moveTo:"view_readytorun"'>PREPARE TO RUN!</li>
+</ul>
+
 	</div>
-	<!-- And let's add another view "About" -->
-	<div id="about" data-dojo-type="dojox/mobile/View">
+
+	<!-- VIEW READY TO RUN -->
+	<div id="view_readytorun" data-dojo-type="dojox/mobile/View">
 		<!-- Main view heading -->
-		<h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'General', moveTo:'general'">About</h1>
+		<h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'BACK', moveTo:'view_setcourse'">NOW READY TO RUN!</h1>
 		<!-- subheading -->
 		<h2 data-dojo-type="dojox/mobile/RoundRectCategory">Generic Mobile Device</h2>
 		<!-- a rounded rectangle list container -->
@@ -77,7 +94,71 @@
 			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'1024'">Songs</li>
 			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'10'">Videos</li>
 		</ul>
+
+		<ul data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
+			<li data-dojo-type="dojox/mobile/TabBarButton"
+	   data-dojo-props='icon1:"images/tab-icon-15.png",
+	   icon2:"images/tab-icon-15h.png",
+	   moveTo:"view_running"'>RUN!
+			</li>
+		</ul>
 	</div>
+	<!-- //VIEW READY TO RUN -->
+
+
+	<!-- VIEW RUNNING -->
+	<div id="view_running" data-dojo-type="dojox/mobile/View">
+		<!-- HEAD -->
+		<h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'BACK', moveTo:'view_setcourse'">NOW RUNNING!</h1>
+		<!-- //HEAD -->
+
+		<!-- CONTENT -->
+		<div id="now_running" data-dojo-type="dojox/mobile/ScrollableView">
+		</div>
+		<!-- //CONTENT -->
+
+		<!-- FOOTER -->
+		<ul data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
+			<li data-dojo-type="dojox/mobile/TabBarButton"
+	   data-dojo-props='icon1:"images/tab-icon-15.png",
+	   icon2:"images/tab-icon-15h.png",
+	   moveTo:"view_radytorun"'>PAUSE
+			</li>
+			<li data-dojo-type="dojox/mobile/TabBarButton"
+	   data-dojo-props='icon1:"images/tab-icon-15.png",
+	   icon2:"images/tab-icon-15h.png",
+	   moveTo:"view_radytorun"'>GOAL!
+			</li>
+		</ul>
+		<!-- //FOOTER -->
+	</div>
+	<!-- //VIEW RUNNING -->
+
+
+	<!-- VIEW RESULT -->
+	<div id="view_result" data-dojo-type="dojox/mobile/View">
+		<!-- HEAD -->
+		<h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'BACK', moveTo:'view_setcourse'">NOW RUNNING!</h1>
+		<!-- //HEAD -->
+
+		<!-- CONTENT -->
+		<div id="now_running" data-dojo-type="dojox/mobile/ScrollableView">
+		</div>
+		<!-- //CONTENT -->
+
+		<!-- FOOTER -->
+		<ul data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
+			</li>
+			<li data-dojo-type="dojox/mobile/TabBarButton"
+	   data-dojo-props='icon1:"images/tab-icon-15.png",
+	   icon2:"images/tab-icon-15h.png",
+	   moveTo:"view_radytorun"'>HOME
+			</li>
+		</ul>
+		<!-- //FOOTER -->
+	</div>
+	<!-- //VIEW RESULT -->
+
 </body>
 
 </html>
