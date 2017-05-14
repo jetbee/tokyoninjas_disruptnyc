@@ -43,58 +43,78 @@
 </head>
 
 <body style="visibility:hidden;">
-	<!-- the view or "page"; select it as the "home" screen -->
+
+	<!-- VIEW HOME -->
 	<div id="view_home" data-dojo-type="dojox/mobile/View" data-dojo-props="selected:true">
-		<!-- a sample heading -->
+		<!-- HEAD -->
 		<h1 data-dojo-type="dojox/mobile/Heading">Go Go Coin!</h1>
-		<!-- a rounded rectangle list container -->
-		<ul data-dojo-type="dojox/mobile/RoundRectList">
-			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-3.png', moveTo:'view_setcourse'">SET COURSE</li>
-		</ul>
+		<!-- //HEAD -->
 
+		<!-- CONTENT -->
+		<div id="contentview_home" data-dojo-type="dojox/mobile/ScrollableView">
+			<img src="images/home.png" width="100%">
+			<ul data-dojo-type="dojox/mobile/RoundRectList">
+				<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-3.png', moveTo:'view_setcourse'">SET COURSE</li>
+			</ul>
+		</div>
+		<!-- //CONTENT -->
+
+		<!-- FOOT -->
+		<!-- FOOT -->
 	</div>
+	<!-- //VIEW HOME -->
 
-	<!-- The "General" sub-page -->
+
+	<!-- VIEW SET COURSE -->
 	<div id="view_setcourse" data-dojo-type="dojox/mobile/View">
-		<!-- a sample heading -->
+		<!-- HEAD -->
 		<h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'BACK', moveTo:'view_home'">SET COURSE</h1>
+		<!-- //HEAD -->
 
-<div id="inbox_view" data-dojo-type="dojox/mobile/ScrollableView">
-		<!-- a rounded rectangle list container -->
-		<ul data-dojo-type="dojox/mobile/RoundRectList">
-			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="moveTo:'about'">About</li>
-			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'2h 40m', moveTo:'about'">Usage</li>
+		<!-- CONTENT -->
+		<div id="contentview_setcourse" data-dojo-type="dojox/mobile/ScrollableView">
+		<div id="contentview_map01">
+		</div>
+		</div>
+		<!-- //CONTENT -->
+
+		<!-- FOOT -->
+		<ul data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
+			<li data-dojo-type="dojox/mobile/TabBarButton"
+	   data-dojo-props='icon1:"images/tab-icon-15.png",
+	   icon2:"images/tab-icon-15h.png",
+	   moveTo:"view2"'>UNDO</li>
+			<li data-dojo-type="dojox/mobile/TabBarButton"
+	   data-dojo-props='icon1:"images/tab-icon-10.png",
+	   icon2:"images/tab-icon-10h.png",
+	   moveTo:"view_readytorun"'>PREPARE TO RUN!</li>
 		</ul>
-</div>
-
-
-<ul data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
-  <li data-dojo-type="dojox/mobile/TabBarButton"
-      data-dojo-props='icon1:"images/tab-icon-15.png",
-                       icon2:"images/tab-icon-15h.png",
-                       moveTo:"view2"'>UNDO</li>
-  <li data-dojo-type="dojox/mobile/TabBarButton"
-      data-dojo-props='icon1:"images/tab-icon-10.png",
-                       icon2:"images/tab-icon-10h.png",
-                       moveTo:"view_readytorun"'>PREPARE TO RUN!</li>
-</ul>
+		<!-- //FOOT -->
 
 	</div>
+	<!-- //VIEW SET COURSE -->
+
 
 	<!-- VIEW READY TO RUN -->
 	<div id="view_readytorun" data-dojo-type="dojox/mobile/View">
-		<!-- Main view heading -->
+		<!-- HEAD -->
 		<h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'BACK', moveTo:'view_setcourse'">NOW READY TO RUN!</h1>
-		<!-- subheading -->
-		<h2 data-dojo-type="dojox/mobile/RoundRectCategory">Generic Mobile Device</h2>
-		<!-- a rounded rectangle list container -->
-		<ul data-dojo-type="dojox/mobile/RoundRectList">
-			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'AcmePhone'">    Network</li>
-			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'AcmePhone'">Line</li>
-			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'1024'">Songs</li>
-			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'10'">Videos</li>
-		</ul>
+		<!-- //HEAD -->
 
+		<!-- INFO AREA -->
+		<h2 data-dojo-type="dojox/mobile/RoundRectCategory">RUN! JUMP! AND GET COINS!</h2>
+		<ul data-dojo-type="dojox/mobile/RoundRectList">
+			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'20'">HIDDEN COINS</li>
+			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'10'">NORMA COINS</li>
+		</ul>
+		<!-- //INFO AREA -->
+
+		<!-- CONTENT -->
+		<div id="contentview_readytorun" data-dojo-type="dojox/mobile/ScrollableView">
+		</div>
+		<!-- //CONTENT -->
+
+		<!-- FOOTER -->
 		<ul data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
 			<li data-dojo-type="dojox/mobile/TabBarButton"
 	   data-dojo-props='icon1:"images/tab-icon-15.png",
@@ -102,6 +122,7 @@
 	   moveTo:"view_running"'>RUN!
 			</li>
 		</ul>
+		<!-- //FOOTER -->
 	</div>
 	<!-- //VIEW READY TO RUN -->
 
@@ -113,7 +134,7 @@
 		<!-- //HEAD -->
 
 		<!-- CONTENT -->
-		<div id="now_running" data-dojo-type="dojox/mobile/ScrollableView">
+		<div id="contentview_running" data-dojo-type="dojox/mobile/ScrollableView">
 		</div>
 		<!-- //CONTENT -->
 
@@ -127,7 +148,7 @@
 			<li data-dojo-type="dojox/mobile/TabBarButton"
 	   data-dojo-props='icon1:"images/tab-icon-15.png",
 	   icon2:"images/tab-icon-15h.png",
-	   moveTo:"view_radytorun"'>GOAL!
+	   moveTo:"view_result"'>GOAL!
 			</li>
 		</ul>
 		<!-- //FOOTER -->
@@ -138,11 +159,15 @@
 	<!-- VIEW RESULT -->
 	<div id="view_result" data-dojo-type="dojox/mobile/View">
 		<!-- HEAD -->
-		<h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'BACK', moveTo:'view_setcourse'">NOW RUNNING!</h1>
+		<h1 data-dojo-type="dojox/mobile/Heading">GOAL!</h1>
 		<!-- //HEAD -->
 
 		<!-- CONTENT -->
-		<div id="now_running" data-dojo-type="dojox/mobile/ScrollableView">
+		<div id="contentview_result" data-dojo-type="dojox/mobile/ScrollableView">
+			<ul>
+				<li>RESULT: CONGRATRATION! CREAR!</li>
+				<li>COIN: 15/20</li>
+			</ul>
 		</div>
 		<!-- //CONTENT -->
 
@@ -152,7 +177,7 @@
 			<li data-dojo-type="dojox/mobile/TabBarButton"
 	   data-dojo-props='icon1:"images/tab-icon-15.png",
 	   icon2:"images/tab-icon-15h.png",
-	   moveTo:"view_radytorun"'>HOME
+	   moveTo:"view_home"'>HOME
 			</li>
 		</ul>
 		<!-- //FOOTER -->
@@ -160,5 +185,4 @@
 	<!-- //VIEW RESULT -->
 
 </body>
-
 </html>
