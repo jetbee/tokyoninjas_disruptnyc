@@ -1,15 +1,23 @@
-// routing test
-var MainApp = angular.module('MainApp', ['ngRoute']);
+// routing & map test
+require([
+		"esri/map",
+		"dojo/domReady!",
+		"esri/toolbars/draw",
+		"dojox/mobile",
+		"dojox/mobile/View",
+],
+function(
+	Map, Button, parser, mobile, View) {
+	var map = new Map("map", {
+		center: [-118, 34.5],
+		zoom: 8,
+		basemap: "topo"
+	});
+	map.on("load", createToolbar);
 
-MainApp.config(function($routeProvider){
-	$routeProvider
-	  .when('/', {controller: 'mainsCtrl', templateUrl:'view01.html'})
-	  .when('/view01', {controller: 'mainsCtrl', templateUrl:'view01.html'})
-	  .when('/view02', { controller: 'mainsCtrl', templateUrl: 'view02.html'})
-	  .otherwise({redirectTo:'/'});
+	function activateTool() {
+		var tool = this.label.toUpperCase().replace(/ /g, "_");
+		toolbar.activate(Draw[tool]);
+		map.hideZoomSlider();
+	}
 });
-
-MainApp.controller('mainsCtrl', function($http, $scope){
-  // 
-});
-

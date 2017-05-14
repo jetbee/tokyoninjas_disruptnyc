@@ -1,14 +1,58 @@
 <!DOCTYPE html>
-<html ng-app="MainApp">
-  <head>
-    <meta charset="utf-8">
-    <title>tokyo ninjyas test</title>
-    <script src="js/libs/angular-1.6.4/angular.js"></script>
-    <script src="js/libs/angular-1.6.4/angular-route.js"></script>
-    <script src="js/app.js"></script>
-  </head>
-  <body>
-    <!-- change ng-view by rooting -->
-    <div ng-view></div>
-  </body>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>arcGIS Test</title>
+  <!-- esri API Stylesheet -->
+  <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
+  <!-- esri API CDN -->
+  <script src="https://js.arcgis.com/3.20/"></script>
+  <script src="https://js.arcgis.com/3.20/dojox/mobile/deviceTheme.js"></script>
+  <!-- link rel="stylesheet" type="text/css" href="https://js.arcgis.com/3.20/dojox/mobile/themes/iOS/iPhone.css"></link -->
+  <script src="js/app.js"></script>
+  <style>
+    html, body, #map{
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div id="view_title" data-dojo-type="dojox/mobile/View">
+    <h1 data-dojo-type="dojox/mobile/Heading">Mr. COIN</h1>
+    <img src="">
+    <button data-dojo-type="dijit/form/Button" moveTo="view_make_corse">MAKE A NEW CORSE</button>
+    <button data-dojo-type="dijit/form/Button" moveTo="view_corse_list">AVAILABLE CORSES</button>
+</div>
+
+<div id="view_corse_list" data-dojo-type="dojox/mobile/View">
+    <ul>
+        <li>AAA</li>
+        <li>BBB</li>
+    </ul>
+</div>
+
+<div id="view_make_corse" data-dojo-type="dojox/mobile/View">
+    <h1 data-dojo-type="dojox/mobile/Heading"
+        data-dojo-props='back:"BACK", moveTo:"view_title"'>Make Course</h1>
+  <div id="header">
+    <button data-dojo-type="dijit/form/Button" moveTo="view_title">BACK</button>
+    <button data-dojo-type="dijit/form/Button" moveTo="view_run">PREPARE TO RUN</button>
+    <button data-dojo-type="dijit/form/Button">UNDO</button>
+  </div>
+  <div id="map"></div>
+</div>
+
+<div id="view_run" data-dojo-type="dojox/mobile/View">
+  <div id="header">
+    <button data-dojo-type="dijit/form/Button">START!</button>
+  </div>
+  <div id="map"></div>
+</div>
+</body>
+
 </html>
