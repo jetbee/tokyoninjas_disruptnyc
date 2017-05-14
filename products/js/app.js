@@ -196,6 +196,22 @@ require([
 
     // set pazzle coins
     function setPazzleCoins(){
+      while(true){
+        to_next_coin = Math.floor(Math.random() * (COIN_DISTANCE_MAX+1-COIN_DISTANCE_MIN)) +  COIN_DISTANCE_MIN;
+        total_coin_length = total_coin_length + to_next_coin;
+        if(total_coin_length > total_cource_length){
+          break;
+        }
+        // TODO: Get Lat Long
+        long = 0.0;
+        lat = 0.0;
+
+        PazzleCoins[i] = new PazzleCoin(total_coin_length,long,lat);
+        i ++;
+      }
+    }
+    /*
+    function setPazzleCoins(){
       var total_coin_length = 0.0;
       var to_next_coin = 0;
       var i = 0;
@@ -209,8 +225,7 @@ require([
         if(total_coin_length > total_cource_length){
           break;
         }
-        // TODO: getLatLong
-
+        // TODO: Get Lat Long
         long = 0.0;
         lat = 0.0;
 
@@ -218,5 +233,6 @@ require([
         i ++;
       }
     }
+    */
 
 });
