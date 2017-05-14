@@ -96,10 +96,12 @@
           dojo.connect(geometryService, "onLengthsComplete", outputLength);
 
           console.log(evt.geometry.paths[0]);
+          console.log(evt.geometry);
           map.graphics.add(graphic);
           var lengthParams = new esri.tasks.LengthsParameters();
 
-          lengthParams.polylines = [evt.geometry];
+          //lengthParams.polylines = [evt.geometry];
+          lengthParams.polylines = [evt.geometry.paths[0]];
           lengthParams.lengthUnit = esri.tasks.GeometryService.UNIT_METER;
           lengthParams.geodesic = true;
        
