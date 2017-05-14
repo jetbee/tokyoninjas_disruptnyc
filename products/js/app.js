@@ -163,7 +163,7 @@ require([
 
     // goal button
     home_btn = registry.byId("home_btn");
-    home_btn.on("click", resetToHome);
+    // home_btn.on("click", resetToHome);
 
 	function activateTool() {
         set_cource_btn.set("disabled", true);
