@@ -55,6 +55,31 @@ require([
     var view_body;
     var set_cource_btn, prepare_to_run_btn;
 
+    // Constant
+    var CON_DETECT_LEN = 3.00 ;//(M)
+    var COIN_DISTANCE_MIN = CON_DETECT_LEN * 3;//(CM)
+    var COIN_DISTANCE_MAX = CON_DETECT_LEN * 10;//(CM)
+
+    // PazleCoins
+    function PazleCoin(_position_length, _long, _lat) {
+          this.position_length;
+          this.long = _long;
+          this.lat = _lat;
+    }
+    var PazzleCoins = [];
+
+    // CoursePoints
+    function CourseLine(_startPoint, _endPoint, _start_len, _end_len, _len) {
+          this.startPoint = _Point;
+          this.endPoint = _Point;
+          this.start_len = _start_len;
+          this.end_len = _end_len;
+          this.len = _len;
+    }
+    var CourseLines = [];
+    var total_cource_length;
+
+
     parser.parse();
 
     view_body = registry.byId("view_body");
@@ -165,4 +190,33 @@ require([
         dijit.byId("view_goal")
         .performTransition("view_home", -1, "slide", null);
     }
+
+
+    // library
+
+    // set pazzle coins
+    function setPazzleCoins(){
+      var total_coin_length = 0.0;
+      var to_next_coin = 0;
+      var i = 0;
+
+      var long = 0.0;
+      var lat = 0.0;
+
+      while(true){
+        to_next_coin = Math.floor(Math.random() * (COIN_DISTANCE_MAX+1-COIN_DISTANCE_MIN)) +  COIN_DISTANCE_MIN;
+        total_coin_length = total_coin_length + to_next_coin;
+        if(total_coin_length > total_cource_length){
+          break;
+        }
+        // TODO: getLatLong
+
+        long = 0.0;
+        lat = 0.0;
+
+        PazzleCoins[i] = new PazzleCoin(total_coin_length,long,lat);
+        i ++;
+      }
+    }
+
 });

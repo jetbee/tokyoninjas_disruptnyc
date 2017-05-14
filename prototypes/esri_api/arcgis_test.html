@@ -155,6 +155,29 @@
       }
 
 
+      var CON_DETECT_LEN = 300 ;//(CM)
+      var COIN_DISTANCE_MIN = CON_DETECT_LEN * 3;//(CM)
+      var COIN_DISTANCE_MAX = CON_DETECT_LEN * 10;//(CM)
+
+      var total_coin_length = 0;
+      var to_next_coin = 0;
+      var i = 0;
+      function PazleCoin(_position_length, _long, _lat) {
+          this.position_length;
+          this.long = _long;
+          this.lat = _lat;
+      }
+      var PazzleCoins = [];
+      while(true){
+        to_next_coin = Math.floor(Math.random() * (COIN_DISTANCE_MAX+1-COIN_DISTANCE_MIN)) +  COIN_DISTANCE_MIN;
+        total_coin_length = total_coin_length + to_next_coin;
+        if(total_coin_length > total_cource_length){
+          break;
+        }
+        PazzleCoins[i] = new PazzleCoin(total_coin_length,0,0);
+        i ++;
+      }
+
       function geoDirection(x1, y1, x2, y2) {
         radian = Math.atan2(x2 - x1, y2 - y1);
         degree = radian * 180 / Math.PI;
