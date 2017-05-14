@@ -228,7 +228,7 @@ require([
     function toGoal(){
         // to Goal
         dijit.byId("view_running")
-        .performTransition("view_goal", 1, "slide", null);
+        .performTransition("view_try", 1, "slide", null);
     }
 
     function resetToHome(){
