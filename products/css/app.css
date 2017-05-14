@@ -1,3 +1,75 @@
-body{
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans');
+
+.font-style-droid{
+  font-family: 'Droid Sans', sans-serif;
+}
+
+html.mobile, .mobile body{
+    min-width: 480px;
+    max-width: 480px;
     height: 100%;
+    margin: auto !important;
+}
+
+/* =========
+  contentview_home
+   =========*/
+
+#view_home{
+  background: url("../images/mainvisual.jpg") no-repeat;
+  background-size: 100% 100%;
+}
+
+.pos-relative{
+  position: relative;
+}
+.mblScrollableViewContainer{
+  position: absolute;
+  top: auto !important;
+  bottom:20px !important;
+}
+
+.mblListItem{
+  background-color: #1127f4 !important;
+}
+
+.mblDomButtonGrayArrow > div, .mblDomButtonArrow > div{
+  border-color: #fff !important;
+}
+
+.mblListItemIcon{
+  display: none;
+}
+
+.mblListItemLabel{
+  text-align: center;
+}
+
+.hidden{
+  display: none;
+}
+
+/* =========
+  contentview_home
+   =========*/
+
+#contentview_setcource_start_btn{
+  height: 64px;
+  padding: 0 8px;
+  border-bottom-width: 0;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  font-size: 21px;
+  color: white;
+  background-color: #1127f4 !important;
+  background-color: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 0;
+        appearance: none;
+        --webkit--appearance: none;
+        background-image: none !important;
 }

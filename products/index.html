@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+	<meta name="viewport" content="width=device-width, shrink-to-fit=no">
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
 	<title>Get the Coin!</title>
 	<!-- application stylesheet will go here -->
@@ -24,13 +24,13 @@
 	<!-- VIEW HOME -->
 	<div id="view_home" data-dojo-type="dojox/mobile/View" data-dojo-props="selected:true">
 		<!-- HEAD -->
-		<h1 data-dojo-type="dojox/mobile/Heading">Get the Coin!</h1>
+		<h1 class="hidden" data-dojo-type="dojox/mobile/Heading">Get the Coin!</h1>
 		<!-- //HEAD -->
 
 		<!-- CONTENT -->
-		<div id="contentview_home" data-dojo-type="dojox/mobile/ScrollableView">
-			<img src="images/home.png" width="100%">
-			<ul data-dojo-type="dojox/mobile/RoundRectList">
+		<div id="contentview_home" class="pos-relative" data-dojo-type="dojox/mobile/ScrollableView">
+			<!-- <img src="images/mainvisual.jpg" width="100%"> -->
+			<ul class="font-style-droid" data-dojo-type="dojox/mobile/RoundRectList">
 				<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-3.png', moveTo:'view_setcourse'">SET COURSE</li>
 			</ul>
 		</div>
