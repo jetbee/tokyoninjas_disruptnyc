@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>arcGIS Test</title>
+    <!-- esri API Stylesheet -->
+    <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
+    <!-- esri API CDN -->
+    <style>
+      html, body, #mainWindow, #map {
+        font-family: sans-serif;
+        height: 100%;
+        width: 100%;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      #header {
+        height: 80px;
+        overflow: auto;
+        padding: 0.5em;
+      }
+    </style>
+
+    <script src="https://js.arcgis.com/3.20/"></script>
+
+  </head>
+  <body>
+  <div id="mainWindow">
+    <div id="InfoArea">
+      Distance: <span id="distance"></span>
+    </div>
+    <div id="header">
+      <button id="polyline" data-dojo-type="dijit/form/Button">Polyline</button>
+    </div>
+    <div id="map"></div>
+  </div>
+
+
+    <script>
+      var map, toolbar, symbol, geomTask;
+
+      require([
+        "esri/map",
+        "esri/toolbars/draw",
+        "esri/graphic",
+        "esri/symbols/SimpleLineSymbol",
+        "esri/geometry/geometryEngine",
+
+        "dojo/parser", "dijit/registry",
+        "dijit/layout/BorderContainer", "dijit/layout/ContentPane",
+        "dijit/form/Button", "dijit/WidgetSet", "dojo/domReady!",
+
+        "esri/tasks/geometry",
+        "esri/tasks/LengthsParameters",
+        "esri/tasks/GeometryService", 
+        "dojo/number"
+      ], function(
+        Map, Draw, Graphic, SimpleLineSymbol,GeometryEngine,
+        parser, registry,geometry,LengthsParameters,GeometryService) {
+        parser.parse();
+
+        map = new Map("map", {
+          basemap: "streets",
+          center: [-73.985605,40.709934],
+          zoom: 16
+        });
+
+        map.on("load", createToolbar);
+
+
+        registry.byId("polyline").on("click", activateTool);
+
+        function createToolbar(themap) {
+          toolbar = new Draw(map);
+          toolbar.on("draw-end", addToMap);
+        }
+
+        function activateTool() {
+          toolbar.activate("polyline");
+          map.hideZoomSlider();
+        }
+
+        function addToMap(evt) {
+          var symbol;
+          var dist;
+          toolbar.deactivate();
+          map.showZoomSlider();
+          symbol = new SimpleLineSymbol();
+          var graphic = new Graphic(evt.geometry, symbol);
+
+          var geometryService = new esri.tasks.GeometryService("https://utility.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer");
+          dojo.connect(geometryService, "onLengthsComplete", outputLength);
+
+          console.log(evt.geometry.paths[0]);
+          map.graphics.add(graphic);
+          var lengthParams = new esri.tasks.LengthsParameters();
+
+          lengthParams.polylines = [evt.geometry];
+          lengthParams.lengthUnit = esri.tasks.GeometryService.UNIT_METER;
+          lengthParams.geodesic = true;
+       
+          geometryService.lengths(lengthParams);
+        }
+
+
+        function outputLength(evt) {
+          dojo.byId("distance").innerHTML = dojo.number.format(evt.lengths[0]) + " meters";
+        }
+
+      });
+    </script>
+  </body>
+</html>
