@@ -55,10 +55,41 @@ require([
     var view_body;
     var set_cource_btn, prepare_to_run_btn;
 
+    // sensours
+    var now_lat, now_long;
+
     // Constant
     var CON_DETECT_LEN = 3.00 ;//(M)
     var COIN_DISTANCE_MIN = CON_DETECT_LEN * 3;//(CM)
     var COIN_DISTANCE_MAX = CON_DETECT_LEN * 10;//(CM)
+
+    // 一般的なフィルタリングの値。
+    var ACC_FILTERING_VALUE = parseFloat(0.1);
+
+    // Sound URLs
+    var SOUND_URL_JUMP = 'sound/jump.wav';
+    var SOUND_URL_COIN = 'sound/coin.wav';
+    var SOUND_URL_FAIL = 'sound/fail.wav';
+    var SOUND_URL_GET_COIN = 'sound/get_coin.wav';
+    var SOUND_URL_ALREADY = 'sound/already.wav';
+    var SOUND_URL_START = 'sound/start.wav';
+    var SOUND_URL_GOAL = 'sound/goal.wav';
+
+    // Load Sound
+    var soundMaterialJump = new Audio(SOUND_URL_JUMP);
+    soundMaterialJump.load();
+    var soundMaterialCoin = new Audio(SOUND_URL_COIN);
+    soundMaterialCoin.load();
+    var soundMaterialCoin = new Audio(SOUND_URL_FAIL);
+    soundMaterialCoin.load();
+    var soundMaterialGetCoin = new Audio(SOUND_URL_GET_COIN);
+    soundMaterialGetCoin.load();
+    var soundMaterialAlready = new Audio(SOUND_URL_ALREADY);
+    soundMaterialAlready.load();
+    var soundMaterialStart = new Audio(SOUND_URL_START);
+    soundMaterialStart.load();
+    var soundMaterialGoal = new Audio(SOUND_URL_GOAL);
+    soundMaterialGoal.load();
 
     // PazleCoins
     function PazleCoin(_position_length, _long, _lat) {
@@ -79,6 +110,17 @@ require([
     var CourseLines = [];
     var total_cource_length;
 
+
+    var alpha = parseFloat(0);
+    var beta = parseFloat(0);
+    var gamma = parseFloat(0);
+
+
+    //Low-pass Filter setting clear value.
+    //ローパスフィルタの値を初期化
+    var low_x = parseFloat(0);
+    var low_y = parseFloat(0);
+    var low_z = parseFloat(0);
 
     parser.parse();
 
@@ -177,6 +219,10 @@ require([
         // to Running
         dijit.byId("view_readytorun")
         .performTransition("view_running", 1, "slide", null);
+
+        // event start
+        window.addEventListener("deviceorientation", EventOrientation, true);
+        window.addEventListener("devicemotion", EventMotion, true);
     }
 
     function toGoal(){
@@ -190,7 +236,6 @@ require([
         dijit.byId("view_goal")
         .performTransition("view_home", -1, "slide", null);
     }
-
 
     // library
 
@@ -210,6 +255,8 @@ require([
         i ++;
       }
     }
+
+
     /*
     function setPazzleCoins(){
       var total_coin_length = 0.0;
@@ -234,5 +281,74 @@ require([
       }
     }
     */
+
+
+    // Sensor Events
+    // GIRO
+    function EventOrientation(event){
+        alpha = event.alpha;
+        beta = event.beta;
+        gamma = event.gamma;
+    }
+
+    // MOTION
+    function EventMotion(event){
+        //HTML5 APIから加速度センサーの値を取ってくる。
+        var x = parseFloat(event.accelerationIncludingGravity.x);
+        var y = parseFloat(event.accelerationIncludingGravity.y);
+        var z = parseFloat(event.accelerationIncludingGravity.z);
+
+        //ローパスフィルター
+        low_x = eval(x * ACC_FILTERING_VALUE + low_x * (1.0 - ACC_FILTERING_VALUE));
+        low_y = eval(y * ACC_FILTERING_VALUE + low_y * (1.0 - ACC_FILTERING_VALUE));
+        low_z = eval(z * ACC_FILTERING_VALUE + low_z * (1.0 - ACC_FILTERING_VALUE));
+
+        //ハイパスフィルター
+        var high_x = eval(x - low_x);
+        var high_y = eval(y - low_y);
+        var high_z = eval(z - low_z);
+     
+        // ジャンプ判定するための加速度閾値(入力値)
+        var accThreshold =  eval(document.getElementById('accThreshold').value );
+
+        // 加速度合計
+        var accTotal = eval((high_y + high_x + high_z));
+     
+
+        //ジャンプ判定
+        //if(high_y <= 3 && high_x > 1.8 && high_z <= 3){
+        if( accTotal >= accThreshold){
+            checkCoin();
+            //removeEventListener("devicemotion", motion, true);
+        }
+    }
+
+    // GPS
+    window.addEventListener('load', function(){
+        if(navigator.geolocation){
+            navigator.geolocation.watchPosition(successFunc, geoError);
+        }else{
+            // rais error
+        }
+    }, false);
+
+    function geoSucess(position){
+        var crd = position.coords;
+
+        // lat / log
+        now_lat = crd.latitude;
+        now_long = crd.longtude;
+    }
+
+    function geoError(error){
+            // rais error
+    }
+
+    // MOTION
+    function checkCoin(){
+        // lat / log
+        now_lat = crd.latitude;
+        now_long = crd.longtude;
+    }
 
 });
