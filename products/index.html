@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<title>Go Go Coin!</title>
+	<!-- application stylesheet will go here -->
+	<link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
+	<link rel="stylesheet" href="css/app.css">
+	<!-- dynamically apply native visual theme according to the browser user agent -->
+	<script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojox/mobile/deviceTheme.js"></script>
+	<link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojox/mobile/themes/android/android.css"></link>
+
+	<!-- dojo bootstrap -->
+  	<script src="https://js.arcgis.com/3.20/"></script>
+	<!-- script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script -->
+	<!-- dojo application code -->
+  	<script src="js/app.js"></script>
+</head>
+
+<body style="visibility:hidden;" id="view_body">
+
+	<!-- VIEW HOME -->
+	<div id="view_home" data-dojo-type="dojox/mobile/View" data-dojo-props="selected:true">
+		<!-- HEAD -->
+		<h1 data-dojo-type="dojox/mobile/Heading">Go Go Coin!</h1>
+		<!-- //HEAD -->
+
+		<!-- CONTENT -->
+		<div id="contentview_home" data-dojo-type="dojox/mobile/ScrollableView">
+			<img src="images/home.png" width="100%">
+			<ul data-dojo-type="dojox/mobile/RoundRectList">
+				<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-3.png', moveTo:'view_setcourse'">SET COURSE</li>
+			</ul>
+		</div>
+		<!-- //CONTENT -->
+
+		<!-- FOOT -->
+		<!-- FOOT -->
+	</div>
+	<!-- //VIEW HOME -->
+
+
+	<!-- VIEW SET COURSE -->
+	<div id="view_setcourse" data-dojo-type="dojox/mobile/View">
+		<!-- HEAD -->
+		<h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'BACK', moveTo:'view_home'">SET COURSE</h1>
+		<!-- //HEAD -->
+
+		<!-- CONTENT -->
+		<div id="contentview_setcourse" data-dojo-type="dojox/mobile/View" style="height:100%">
+		<div id="contentview_setcource_start">
+			<button id="contentview_setcource_start_btn" data-dojo-type="dojox/mobile/Button">SET COURCE</button>
+		</div>
+		<div id="contentview_setcource_mappoint">
+		</div>
+		<div id="contentview_map">
+		</div>
+		<!-- //CONTENT -->
+
+		<!-- FOOT -->
+		<div data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
+			<button id="prepare_to_run_btn" data-dojo-type="dojox/mobile/Button">PREPARE TO RUN</button>
+		</div>
+		<!-- //FOOT -->
+
+	</div>
+	<!-- //VIEW SET COURSE -->
+
+
+	<!-- VIEW READY TO RUN -->
+	<div id="view_readytorun" data-dojo-type="dojox/mobile/View">
+		<!-- HEAD -->
+		<h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="back:'BACK', moveTo:'view_setcourse'">NOW READY TO RUN!</h1>
+		<!-- //HEAD -->
+
+		<!-- INFO AREA -->
+		<h2 data-dojo-type="dojox/mobile/RoundRectCategory">RUN! JUMP! AND GET COINS!</h2>
+		<ul data-dojo-type="dojox/mobile/RoundRectList">
+			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'20'">HIDDEN COINS</li>
+			<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="rightText:'10'">NORMA COINS</li>
+		</ul>
+		<!-- //INFO AREA -->
+
+		<!-- CONTENT -->
+        <div id="contentview_readytorun">
+		</div>
+		<div id="contentview_readytorun_mappoint">
+		</div>
+		<!-- //CONTENT -->
+
+		<!-- FOOTER -->
+		<ul data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
+			<li data-dojo-type="dojox/mobile/TabBarButton"
+	   data-dojo-props='icon1:"images/tab-icon-15.png",
+	   icon2:"images/tab-icon-15h.png",
+	   moveTo:"view_running"'>RUN!
+			</li>
+		</ul>
+		<!-- //FOOTER -->
+	</div>
+	<!-- //VIEW READY TO RUN -->
+
+
+	<!-- VIEW RUNNING -->
+	<div id="view_running" data-dojo-type="dojox/mobile/View">
+		<!-- HEAD -->
+        <div data-dojo-type="dojox/mobile/Heading" data-dojo-props="lavel:'NOW RUNNING!'">
+          <span data-dojo-type="dojox/mobile/ToolBarButton"
+                      data-dojo-props='label:"BACK"'></span>
+        </div>
+		<!-- //HEAD -->
+
+		<!-- CONTENT -->
+		<div id="contentview_running" data-dojo-type="dojox/mobile/ScrollableView">
+		</div>
+		<!-- //CONTENT -->
+
+		<!-- FOOTER -->
+		<ul data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
+			<li data-dojo-type="dojox/mobile/TabBarButton"
+	   data-dojo-props='icon1:"images/tab-icon-15.png",
+	   icon2:"images/tab-icon-15h.png",
+	   moveTo:"view_radytorun"'>PAUSE
+			</li>
+			<li data-dojo-type="dojox/mobile/TabBarButton"
+	   data-dojo-props='icon1:"images/tab-icon-15.png",
+	   icon2:"images/tab-icon-15h.png",
+	   moveTo:"view_result"'>GOAL!
+			</li>
+		</ul>
+		<!-- //FOOTER -->
+	</div>
+	<!-- //VIEW RUNNING -->
+
+
+	<!-- VIEW RESULT -->
+	<div id="view_result" data-dojo-type="dojox/mobile/View">
+		<!-- HEAD -->
+		<h1 data-dojo-type="dojox/mobile/Heading">GOAL!</h1>
+		<!-- //HEAD -->
+
+		<!-- CONTENT -->
+		<div id="contentview_result" data-dojo-type="dojox/mobile/ScrollableView">
+			<ul>
+				<li>RESULT: CONGRATRATION! CREAR!</li>
+				<li>COIN: 15/20</li>
+			</ul>
+		</div>
+		<!-- //CONTENT -->
+
+		<!-- FOOTER -->
+		<ul data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
+			</li>
+			<li data-dojo-type="dojox/mobile/TabBarButton"
+	   data-dojo-props='icon1:"images/tab-icon-15.png",
+	   icon2:"images/tab-icon-15h.png",
+	   moveTo:"view_home"'>HOME
+			</li>
+		</ul>
+		<!-- //FOOTER -->
+	</div>
+	<!-- //VIEW RESULT -->
+
+</body>
+</html>
