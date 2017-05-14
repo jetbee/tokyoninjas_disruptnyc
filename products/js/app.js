@@ -82,16 +82,20 @@ require([
     back_to_set_course_btn.on("click", backToSetCourse);
 
     // run button
-    pause_btn = registry.byId("run_btn");
-    pause_btn.on("click", toRunning();
+    run_btn = registry.byId("run_btn");
+    run_btn.on("click", toRunning);
 
     // pause button
     pause_btn = registry.byId("pause_btn");
     pause_btn.on("click", backToReadyToRun);
 
     // goal button
-    goal_btn = registry.byId("pause_btn");
+    goal_btn = registry.byId("goal_btn");
     goal_btn.on("click", toGoal);
+
+    // goal button
+    home_btn = registry.byId("home_btn");
+    home_btn.on("click", resetToHome);
 
 	function activateTool() {
         set_cource_btn.set("disabled", true);
@@ -134,7 +138,31 @@ require([
         domConstruct.place(contentview_map, contentview_mappoint, "after");
         // to readyToRun
         dijit.byId("view_readytorun")
-        .performTransition("view_setcourse", 1, "slide", null);
+        .performTransition("view_setcourse", -1, "slide", null);
     }
 
+
+    function backToReadyToRun(){
+        // back to readyToRun
+        dijit.byId("view_running")
+        .performTransition("view_readytorun", -1, "slide", null);
+    }
+
+    function toRunning(){
+        // to Running
+        dijit.byId("view_readytorun")
+        .performTransition("view_running", 1, "slide", null);
+    }
+
+    function toGoal(){
+        // to Goal
+        dijit.byId("view_running")
+        .performTransition("view_goal", 1, "slide", null);
+    }
+
+    function resetToHome(){
+        // reset to Home
+        dijit.byId("view_goal")
+        .performTransition("view_home", -1, "slide", null);
+    }
 });

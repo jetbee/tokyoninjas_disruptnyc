@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
-	<title>Go Go Coin!</title>
+	<title>Get the Coin!</title>
 	<!-- application stylesheet will go here -->
 	<link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
 	<link rel="stylesheet" href="css/app.css">
@@ -24,7 +24,7 @@
 	<!-- VIEW HOME -->
 	<div id="view_home" data-dojo-type="dojox/mobile/View" data-dojo-props="selected:true">
 		<!-- HEAD -->
-		<h1 data-dojo-type="dojox/mobile/Heading">Go Go Coin!</h1>
+		<h1 data-dojo-type="dojox/mobile/Heading">Get the Coin!</h1>
 		<!-- //HEAD -->
 
 		<!-- CONTENT -->
@@ -90,11 +90,7 @@
 
 		<!-- FOOTER -->
 		<ul data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
-			<li data-dojo-type="dojox/mobile/TabBarButton"
-	   data-dojo-props='icon1:"images/tab-icon-15.png",
-	   icon2:"images/tab-icon-15h.png",
-	   moveTo:"view_running"'>RUN!
-			</li>
+			<button id="run_btn" data-dojo-type="dojox/mobile/Button">RUN!</button>
 		</ul>
 		<!-- //FOOTER -->
 	</div>
@@ -105,36 +101,27 @@
 	<div id="view_running" data-dojo-type="dojox/mobile/View">
 		<!-- HEAD -->
         <h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props="lavel:'NOW RUNNING!'">
-          <span data-dojo-type="dojox/mobile/ToolBarButton"
-                      data-dojo-props='label:"BACK"'></span>
         </h1>
 		<!-- //HEAD -->
 
 		<!-- CONTENT -->
-		<div id="contentview_running" data-dojo-type="dojox/mobile/ScrollableView">
+		<div id="contentview_running">
+            Now Running! Get the Coin!
 		</div>
 		<!-- //CONTENT -->
 
 		<!-- FOOTER -->
-		<ul data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
-			<li data-dojo-type="dojox/mobile/TabBarButton"
-	   data-dojo-props='icon1:"images/tab-icon-15.png",
-	   icon2:"images/tab-icon-15h.png",
-	   moveTo:"view_radytorun"'>PAUSE
-			</li>
-			<li data-dojo-type="dojox/mobile/TabBarButton"
-	   data-dojo-props='icon1:"images/tab-icon-15.png",
-	   icon2:"images/tab-icon-15h.png",
-	   moveTo:"view_result"'>GOAL!
-			</li>
-		</ul>
+		<div data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
+			<button id="pause_btn" data-dojo-type="dojox/mobile/Button">PAUSE</button>
+			<button id="goal_btn" data-dojo-type="dojox/mobile/Button">GOAL!</button>
+		</div>
 		<!-- //FOOTER -->
 	</div>
 	<!-- //VIEW RUNNING -->
 
 
 	<!-- VIEW RESULT -->
-	<div id="view_result" data-dojo-type="dojox/mobile/View">
+	<div id="view_goal" data-dojo-type="dojox/mobile/View">
 		<!-- HEAD -->
 		<h1 data-dojo-type="dojox/mobile/Heading">GOAL!</h1>
 		<!-- //HEAD -->
@@ -145,18 +132,13 @@
 				<li>RESULT: CONGRATRATION! CREAR!</li>
 				<li>COIN: 15/20</li>
 			</ul>
+			<button id="home_btn" data-dojo-type="dojox/mobile/Button">HOME</button>
 		</div>
 		<!-- //CONTENT -->
 
 		<!-- FOOTER -->
-		<ul data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
-			</li>
-			<li data-dojo-type="dojox/mobile/TabBarButton"
-	   data-dojo-props='icon1:"images/tab-icon-15.png",
-	   icon2:"images/tab-icon-15h.png",
-	   moveTo:"view_home"'>HOME
-			</li>
-		</ul>
+		<div data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
+		</div>
 		<!-- //FOOTER -->
 	</div>
 	<!-- //VIEW RESULT -->
