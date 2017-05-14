@@ -68,7 +68,7 @@ require([
     }
     var PazzleCoins = [];
 
-    // CoursePoints
+    // CourseLines
     function CourseLine(_startPoint, _endPoint, _start_len, _end_len, _len) {
           this.startPoint = _Point;
           this.endPoint = _Point;
