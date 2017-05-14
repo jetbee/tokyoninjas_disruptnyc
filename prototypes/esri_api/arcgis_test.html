@@ -37,6 +37,8 @@
   </div>
     <script>
       var map, toolbar, symbol, geomTask;
+      var coinMinInterval = 20;// todoあとで
+      var coinNum = 20;// todoあとで
 
       require([
         "esri/map",
@@ -54,8 +56,8 @@
 
         map = new Map("map", {
           basemap: "streets",
-          center: [60, -73.984824],
-          zoom: 10
+          center: [-73.985605,40.709934],
+          zoom: 16
         });
 
         map.on("load", createToolbar);
@@ -78,9 +80,90 @@
           map.showZoomSlider();
           symbol = new SimpleLineSymbol();
           var graphic = new Graphic(evt.geometry, symbol);
+          console.log("evt.geometry.paths", evt.geometry.paths);
+          setCoins(evt.geometry.paths);
           map.graphics.add(graphic);
         }
       });
+
+      function setCoins(paths){
+        directions = getDirection(paths);
+        distances = [300, 300];// todoあとで
+        var maxDistance = 0;
+        distances.forEach(function(value){
+          maxDistance += value;
+        });
+        console.log('maxDistance = ', maxDistance)
+
+        coinIntervals = setCoinInterval();
+        console.info(coinIntervals);
+
+        var IntervalCnt = 0;
+        var directionsCnt = 0;
+        var distanceCnt = 0;
+        var sumCoinIntervals = 0;
+        var sumDirections = 0;
+        var points = [];
+        coinIntervals.forEach(function(value){
+          if (cnt <= distances.length){
+            // ディスタンスの長さだけ
+            sumCoinIntervals += value;
+            points.push(getPoints(directions[cnt], sumCoinIntervals));
+            // ディスタンスが
+
+          }
+        });
+
+      }
+
+
+      function setCoinInterval(){
+        var ret = [];
+        for (var i = 0; i < coinNum; i++){
+          ret.push(coinMinInterval +( 1 * Math.random()));
+          console.log(coinMinInterval);
+        }
+        return ret;
+      }
+
+      function getPoints(directions, distances){
+        radian = directions[i] * Math.PI / 180;
+        x = Math.cos(radian) * distances[i];
+        y = Math.sin(radian) * distances[i];
+        console.info("coin_distances", coin_distances);
+        return [x,y];
+      }
+
+      function getDirection(paths){
+        var directions = [];
+        for (var i = 0; i < paths[0].length-1; i++) {
+          console.log (paths[0][i]);
+          x1 = paths[0][i][0]; //x
+          y1 = paths[0][i][1]; //y
+          x2 = paths[0][i+1][0];
+          y2 = paths[0][i+1][1];
+          console.log('x1 = ', x1);
+          console.log('y1 = ', y1);
+          console.log('x2 = ', x2);
+          console.log('y2 = ', y2);
+          dirN0 = geoDirection(x1, y1, x2, y2);
+          console.log("dirN0 = ", dirN0);
+          directions.push(dirN0);
+        }
+        console.log("directions", directions);
+        return directions
+      }
+
+
+      function geoDirection(x1, y1, x2, y2) {
+        radian = Math.atan2(x2 - x1, y2 - y1);
+        degree = radian * 180 / Math.PI;
+        if (degree <=0){
+          degree = degree + 360
+        }
+    return degree;
+}
+      
     </script>
   </body>
 </html>
