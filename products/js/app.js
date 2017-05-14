@@ -57,6 +57,7 @@ require([
 
     // sensours
     var now_lat, now_long;
+    var checking;
 
     // Constant
     var CON_DETECT_LEN = 3.00 ;//(M)
@@ -65,15 +66,16 @@ require([
 
     // 一般的なフィルタリングの値。
     var ACC_FILTERING_VALUE = parseFloat(0.1);
+    var ACC_THRES_HOLD = 40;
 
     // Sound URLs
-    var SOUND_URL_JUMP = 'sound/jump.wav';
-    var SOUND_URL_COIN = 'sound/coin.wav';
-    var SOUND_URL_FAIL = 'sound/fail.wav';
-    var SOUND_URL_GET_COIN = 'sound/get_coin.wav';
-    var SOUND_URL_ALREADY = 'sound/already.wav';
-    var SOUND_URL_START = 'sound/start.wav';
-    var SOUND_URL_GOAL = 'sound/goal.wav';
+    var SOUND_URL_JUMP = 'sound/jump.mp3';
+    var SOUND_URL_COIN = 'sound/coin.mp3';
+    var SOUND_URL_FAIL = 'sound/fail.mp3';
+    var SOUND_URL_GET_COIN = 'sound/get_coin.mp3';
+    var SOUND_URL_ALREADY = 'sound/already.mp3';
+    var SOUND_URL_START = 'sound/start.mp3';
+    var SOUND_URL_GOAL = 'sound/goal.mp3';
 
     // Load Sound
     var soundMaterialJump = new Audio(SOUND_URL_JUMP);
@@ -109,7 +111,6 @@ require([
     }
     var CourseLines = [];
     var total_cource_length;
-
 
     var alpha = parseFloat(0);
     var beta = parseFloat(0);
@@ -220,6 +221,9 @@ require([
         dijit.byId("view_readytorun")
         .performTransition("view_running", 1, "slide", null);
 
+        // Sound
+        soundMaterialStart.play();
+
         // event start
         window.addEventListener("deviceorientation", EventOrientation, true);
         window.addEventListener("devicemotion", EventMotion, true);
@@ -227,6 +231,8 @@ require([
 
     function toGoal(){
         // to Goal
+        soundMaterialGoal.play();
+
         dijit.byId("view_running")
         .performTransition("view_try", 1, "slide", null);
     }
@@ -309,15 +315,13 @@ require([
         var high_z = eval(z - low_z);
      
         // ジャンプ判定するための加速度閾値(入力値)
-        var accThreshold =  eval(document.getElementById('accThreshold').value );
 
         // 加速度合計
         var accTotal = eval((high_y + high_x + high_z));
      
-
         //ジャンプ判定
         //if(high_y <= 3 && high_x > 1.8 && high_z <= 3){
-        if( accTotal >= accThreshold){
+        if( accTotal >= ACC_THRES_HOLD){
             checkCoin();
             //removeEventListener("devicemotion", motion, true);
         }
@@ -326,9 +330,10 @@ require([
     // GPS
     window.addEventListener('load', function(){
         if(navigator.geolocation){
-            navigator.geolocation.watchPosition(successFunc, geoError);
+            navigator.geolocation.watchPosition(geoSucess, geoError);
         }else{
             // rais error
+            registry.byId("id_debug_text").innerHTML = "GEO ERROR 1";
         }
     }, false);
 
@@ -338,17 +343,24 @@ require([
         // lat / log
         now_lat = crd.latitude;
         now_long = crd.longtude;
+        dom.byId("id_debug_now_lat").innerHTML = now_lat;
+        dom.byId("id_debug_now_long").innerHTML = now_long;
     }
 
     function geoError(error){
             // rais error
+            dom.byId("id_debug_text").innerHTML = "GEO ERROR 2";
     }
 
     // MOTION
     function checkCoin(){
-        // lat / log
-        now_lat = crd.latitude;
-        now_long = crd.longtude;
+        soundMaterialJump.play();
+        // await sleep(20);
+        dom.byId("id_debug_text").innerHTML = "Coin Checked";
     }
+
+    // DEBUG
+    dijit.byId("id_debug_01_btn").on("click", checkCoin);
+    window.addEventListener("devicemotion", EventMotion, true);
 
 });
