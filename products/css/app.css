@@ -4,6 +4,7 @@
 
 .font-style-droid{
   font-family: 'Droid Sans', sans-serif;
+  font-weight: bold;
 }
 
 html.mobile, .mobile body{
@@ -32,7 +33,7 @@ html.mobile, .mobile body{
 }
 
 .mblListItem{
-  background-color: #1127f4 !important;
+  background-color: #84ccc9 !important;
 }
 
 .mblDomButtonGrayArrow > div, .mblDomButtonArrow > div{
@@ -45,31 +46,97 @@ html.mobile, .mobile body{
 
 .mblListItemLabel{
   text-align: center;
-}
 
-.hidden{
-  display: none;
 }
 
 /* =========
   contentview_home
    =========*/
 
-#contentview_setcource_start_btn{
+#contentview_setcource_start{
+  padding: 16px 9px 16px;
+}
+
+#contentview_setcource_start_btn,
+#prepare_to_run_btn,
+#run_btn,
+#pause_btn,
+#goal_btn,
+#home_btn{
+  width: 100%;
   height: 64px;
   padding: 0 8px;
-  border-bottom-width: 0;
+  border: 1px solid #adaaad;
+  border-bottom-width: 1px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   font-size: 21px;
   color: white;
-  background-color: #1127f4 !important;
+  background-color: #84ccc9 !important;
   background-color: transparent;
-        border: none;
-        cursor: pointer;
-        outline: none;
-        padding: 0;
-        appearance: none;
-        --webkit--appearance: none;
-        background-image: none !important;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+  --webkit--appearance: none;
+  background-image: none !important;
+  display: block;
+}
+
+.mblTabBar,
+.mblTabBarFlatTab{
+  height: auto !important;
+  padding: 16px 9px 16px !important;
+  overflow: none !important;
+}
+
+
+/* =========
+  RUN! JUMP! AND GET COINS!
+   =========*/
+
+/* =========
+  Now Run!
+   =========*/
+
+#goal_btn{
+  margin-top:16px;
+}
+
+/* =========
+  Result
+   =========*/
+
+.bg_result{
+  background: url("../images/congratulations_bg.png") repeat-y;
+  background-size: 100%;
+}
+.bg_cong{
+  background: url("../images/congratulations.png") no-repeat;
+  background-size: 100%;
+}
+
+.result-style{
+    font-size: 100px;
+    position: absolute;
+    top: -42px;
+    right: 33px;
+    color: #000000;
+    z-index: 2;
+}
+
+/* =========
+  util
+  =========*/
+.hidden{
+  display: none;
+}
+.secondly-color{
+  color: #c70f19;
+}
+
+.img-responsive{
+  width:100%;
 }

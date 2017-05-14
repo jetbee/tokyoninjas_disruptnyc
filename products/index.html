@@ -30,8 +30,8 @@
 		<!-- CONTENT -->
 		<div id="contentview_home" class="pos-relative" data-dojo-type="dojox/mobile/ScrollableView">
 			<!-- <img src="images/mainvisual.jpg" width="100%"> -->
-			<ul class="font-style-droid" data-dojo-type="dojox/mobile/RoundRectList">
-				<li data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-3.png', moveTo:'view_setcourse'">SET COURSE</li>
+			<ul data-dojo-type="dojox/mobile/RoundRectList">
+				<li class="font-style-droid" data-dojo-type="dojox/mobile/ListItem" data-dojo-props="icon:'images/icon-3.png', moveTo:'view_setcourse'">SET COURSE</li>
 			</ul>
 		</div>
 		<!-- //CONTENT -->
@@ -51,7 +51,7 @@
 		<!-- CONTENT -->
 		<div id="contentview_setcourse" data-dojo-type="dojox/mobile/View">
 		<div id="contentview_setcource_start">
-			<button id="contentview_setcource_start_btn" data-dojo-type="dojox/mobile/Button">SET COURCE</button>
+			<button id="contentview_setcource_start_btn" class="font-style-droid btn" data-dojo-type="dojox/mobile/Button">SET COURCE</button>
 		</div>
 		<div id="contentview_setcource_mappoint"></div>
 		<div id="contentview_map"></div>
@@ -60,7 +60,7 @@
 
 		<!-- FOOT -->
 		<div data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
-			<button id="prepare_to_run_btn" data-dojo-type="dojox/mobile/Button">PREPARE TO RUN</button>
+			<button id="prepare_to_run_btn" class="font-style-droid secondly-color" data-dojo-type="dojox/mobile/Button">PREPARE TO RUN</button>
 		</div>
 		<!-- //FOOT -->
 
@@ -90,7 +90,7 @@
 
 		<!-- FOOTER -->
 		<ul data-dojo-type="dojox/mobile/TabBar"  data-dojo-props='barType:"flatTab", fixed:"bottom"'>
-			<button id="run_btn" data-dojo-type="dojox/mobile/Button">RUN!</button>
+			<button id="run_btn" class="font-style-droid" data-dojo-type="dojox/mobile/Button">RUN!</button>
 		</ul>
 		<!-- //FOOTER -->
 	</div>
@@ -121,17 +121,14 @@
 
 
 	<!-- VIEW RESULT -->
-	<div id="view_goal" data-dojo-type="dojox/mobile/View">
+	<div id="view_goal" class="bg_result" data-dojo-type="dojox/mobile/View">
 		<!-- HEAD -->
-		<h1 data-dojo-type="dojox/mobile/Heading">GOAL!</h1>
+		<h1 data-dojo-type="dojox/mobile/Heading" class="hidden">GOAL!</h1>
+		<p id="result" class="result-style font-style-droid">30/30</p>
 		<!-- //HEAD -->
 
 		<!-- CONTENT -->
-		<div id="contentview_result" data-dojo-type="dojox/mobile/ScrollableView">
-			<ul>
-				<li>RESULT: CONGRATRATION! CREAR!</li>
-				<li>COIN: 15/20</li>
-			</ul>
+		<div id="contentview_result" class="bg_cong" data-dojo-type="dojox/mobile/ScrollableView">
 			<button id="home_btn" data-dojo-type="dojox/mobile/Button">HOME</button>
 		</div>
 		<!-- //CONTENT -->
